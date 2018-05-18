@@ -13,16 +13,16 @@ defmodule Lab1Test do
     pid = Lab1.print_first_message()
 
     assert capture_io(:stderr, fn ->
-      send(pid, "foo")
-      # Wait until output has been captured
-      Process.sleep(100)
-    end) == "foo"
+             send(pid, "foo")
+             # Wait until output has been captured
+             Process.sleep(100)
+           end) == "foo"
 
     assert capture_io(:stderr, fn ->
-      send(pid, "foo")
-      # Wait until output has been captured
-      Process.sleep(100)
-    end) == ""
+             send(pid, "foo")
+             # Wait until output has been captured
+             Process.sleep(100)
+           end) == ""
 
     refute Process.alive?(pid)
   end
@@ -32,16 +32,16 @@ defmodule Lab1Test do
     pid = Lab1.print_all_messages()
 
     assert capture_io(:stderr, fn ->
-      send(pid, "foo")
-      # Wait until output has been captured
-      Process.sleep(100)
-    end) == "foo"
+             send(pid, "foo")
+             # Wait until output has been captured
+             Process.sleep(100)
+           end) == "foo"
 
     assert capture_io(:stderr, fn ->
-      send(pid, "bar")
-      # Wait until output has been captured
-      Process.sleep(100)
-    end) == "bar"
+             send(pid, "bar")
+             # Wait until output has been captured
+             Process.sleep(100)
+           end) == "bar"
 
     assert Process.alive?(pid)
   end
