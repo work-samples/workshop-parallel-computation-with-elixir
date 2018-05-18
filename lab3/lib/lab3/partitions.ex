@@ -6,8 +6,11 @@ defmodule Lab3.InvoiceProducer do
   end
 
   def init(regions) do
-    raise "not implemented yet"
+    dispatcher = {GenStage.PartitionDispatcher, partitions: regions, hash: &partition_hash/1}
+    {:producer, regions, dispatcher: dispatcher}
   end
+
+  defp partition_hash(event), do: {event, event.region}
 
   def handle_demand(demand, regions) do
     events = Enum.take(invoice_generator(regions), demand)
